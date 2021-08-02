@@ -1,0 +1,74 @@
+We can solve it Without Auxiliary Array. Below is the algorithm. 
+
+1) Do following for every element arr[i]
+   a) While index[i] is not equal to i
+       (i)  Store array and index values of the target (or 
+            correct) position where arr[i] should be placed.
+            The correct position for arr[i] is index[i]
+       (ii) Place arr[i] at its correct position. Also
+            update index value of correct position.
+       (iii) Copy old values of correct position (Stored in
+            step (i)) to arr[i] and index[i] as the while 
+            loop continues for i.
+
+Below is the implementation of the above algorithm. 
+
+//A O(n) time and O(1) extra space Java program to
+//sort an array according to given indexes
+ 
+import java.util.Arrays;
+ 
+class Test
+{
+    static int arr[] = new int[]{50, 40, 70, 60, 90};
+    static int index[] = new int[]{3,  0,  4,  1,  2};
+     
+    // Method to reorder elements of arr[] according
+    // to index[]
+    static void reorder()
+    {
+        // Fix all elements one by one
+        for (int i=0; i<arr.length; i++)
+        {
+            // While index[i] and arr[i] are not fixed
+            while (index[i] != i)
+            {
+                // Store values of the target (or correct)
+                // position before placing arr[i] there
+                int  oldTargetI  = index[index[i]];
+                char oldTargetE  = (char)arr[index[i]];
+      
+                // Place arr[i] at its target (or correct)
+                // position. Also copy corrected index for
+                // new position
+                arr[index[i]] = arr[i];
+                index[index[i]] = index[i];
+      
+                // Copy old target values to arr[i] and
+                // index[i]
+                index[i] = oldTargetI;
+                arr[i]   = oldTargetE;
+            }
+        }
+    }
+     
+    // Driver method to test the above function
+    public static void main(String[] args)
+    {
+         
+        reorder();
+         
+        System.out.println("Reordered array is: ");
+        System.out.println(Arrays.toString(arr));
+        System.out.println("Modified Index array is:");
+        System.out.println(Arrays.toString(index));
+         
+    }
+}
+
+Output:
+
+Reordered array is: 
+40 60 90 50 70 
+Modified Index array is: 
+0 1 2 3 4
