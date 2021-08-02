@@ -1,0 +1,83 @@
+If occurrence(a) > occurrence(b) then append “aab”
+If occurrence(b) > occurrence(a) then append “bba”
+If occurrence(a) = occurrence(b) then append “ab”
+Since we reduce the difference between the occurrences of ‘a’ and ‘b’ by at most 1 in each iteration so “bba” and “aab” are guaranteed not to be followed by “aab” and “bba” respectively.
+Below is the implementation of the above approach: 
+ 
+
+
+// Java implementation of the approach
+class GFG
+{
+ 
+    // Function to generate and
+    // print the required string
+    static void generateString(int A, int B)
+    {
+        String rt = "";
+        while (0 < A || 0 < B)
+        {
+ 
+            // More 'b', append "bba"
+            if (A < B)
+            {
+                if (0 < B--)
+                {
+                    rt += ('b');
+                }
+                if (0 < B--)
+                {
+                    rt += ('b');
+                }
+                if (0 < A--)
+                {
+                    rt += ('a');
+                }
+            }
+             
+            // More 'a', append "aab"
+            else if (B < A)
+            {
+                if (0 < A--)
+                {
+                    rt += ('a');
+                }
+                if (0 < A--)
+                {
+                    rt += ('a');
+                }
+                if (0 < B--)
+                {
+                    rt += ('b');
+                }
+            }
+             
+            // Equal number of 'a' and 'b'
+            // append "ab"
+            else
+            {
+                if (0 < A--)
+                {
+                    rt += ('a');
+                }
+                if (0 < B--)
+                {
+                    rt += ('b');
+                }
+            }
+        }
+        System.out.println(rt);
+    }
+ 
+    // Driver code
+    public static void main(String[] args)
+    {
+        int A = 2, B = 6;
+        generateString(A, B);
+    }
+}
+ 
+// This code is contributed
+// by PrinciRaj1992
+Output: 
+bbabbabb
