@@ -1,0 +1,5 @@
+There are N cars, each having some of M features. A car feature list is given as binary string. for ex: 0000111, 0 means feature not supported.
+
+Two cars are similar if their feature description differs by atmost one feature. for ex: 11001, 11000 are similar for every car, find count of similar cars.
+
+Solved with XOR operator
